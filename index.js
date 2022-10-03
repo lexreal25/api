@@ -14,7 +14,7 @@ const cors = require("cors");
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect("mongodb+srv://user-123:user-123@lexorg.hkbta.mongodb.net/easyMemo?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
