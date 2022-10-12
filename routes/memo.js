@@ -7,17 +7,17 @@ const {
 
 //create memo
 router.post("/memos", async (req, res) => {
-const newMemo = new Memo(req.body)
+  const newMemo = new Memo(req.body);
   try {
     const memo = await newMemo.save();
-    res.status(200).json(memo)
+    res.status(200).json(memo);
   } catch (err) {
-    res.json(err)
+    res.json(err);
   }
-})
+});
 
 //update memo
-verifyTokenAuthorization
+verifyTokenAuthorization;
 router.put("/update/:id", async (req, res) => {
   try {
     const updatedMemo = await Memo.findByIdAndUpdate(
@@ -34,13 +34,15 @@ router.put("/update/:id", async (req, res) => {
 });
 
 //get all memo
-router.get("/",  async (req, res) => {
-  const query = req.query.new
+router.get("/", async (req, res) => {
+  const query = req.query.new;
   try {
-    const memos = query ? await Memo.find().sort({_id: -1}).limit(20) : await Memo.find();
+    const memos = query
+      ? await Memo.find().sort({ _id: -1 }).limit(20)
+      : await Memo.find().sort({ _id: -1 });
     res.status(200).json(memos);
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json(err);
   }
 });
 
