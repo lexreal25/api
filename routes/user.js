@@ -48,8 +48,9 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
-//GET ALL USER
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+
+//GET ALL USER verifyTokenAuthorization
+router.get("/",async (req, res) => {
   const query = req.query.new;
   try {
     const users = query
