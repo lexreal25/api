@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
   });
   try {
     //check if user exist
-    if (req.body.roleId !== (await User.findOne({ roleId:roleId }))) {
+    if (roleId !== (await User.findOne({ roleId:roleId }))) {
       const savedUser = await newUser.save();
       res.status(200).json(savedUser);
     } else {
