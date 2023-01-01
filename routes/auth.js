@@ -5,12 +5,13 @@ const jwt = require("jsonwebtoken");
 
 //create user
 router.post("/register", async (req, res) => {
-  const { roleId, fname, lname, role } = req.body;
+  const { roleId, fname, lname, role, signature } = req.body;
   const newUser = new User({
     roleId,
     fname,
     lname,
     role,
+    signature,
     password: CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC),
   });
   try {
@@ -48,7 +49,6 @@ router.post("/login", async (req, res) => {
       process.env.JWT_SEC,
       { expiresIn: "2d" }
     );
-    console.log(user._doc);
     const { password, ...others } = user._doc;
     res.status(200).json({ ...others, accessToken });
   } catch (err) {
@@ -56,3 +56,4 @@ router.post("/login", async (req, res) => {
   }
 });
 module.exports = router;
+
