@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
       res.status(403).json("user exist");
     }
   } catch (err) {
-    res.status(403).json("User role already created");
+    res.status(403).json("User role exit");
   }
 });
 
